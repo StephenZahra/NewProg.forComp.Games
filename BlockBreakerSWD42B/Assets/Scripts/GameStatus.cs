@@ -10,7 +10,27 @@ public class GameStatus : MonoBehaviour
 
     TextMeshProUGUI scoreText;
 
-    
+
+
+    void Awake()
+    {
+        int gamestatusCount = FindObjectsOfType<GameStatus>().Length;
+        //if i have more than 1 gameStatus object
+        if(gamestatusCount > 1)
+        {
+            //disable and delete the 2nd one
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+        else //gameStatusCount == 1
+        {
+            //keep the game status
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
+
+
     // Start is called before the first frame update
     void Start()
     {
